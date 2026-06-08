@@ -1,1 +1,108 @@
-<a></a> e meu trabalha da aula de programação<a></a>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecte-se com a Vida | Conscientização</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Desconecte para Conectar</h1>
+        <p>Você controla o celular ou ele controla você?</p>
+    </header>
+
+    <main class="container">
+        <section class="stats-section">
+            <h2>O Impacto do Uso Excessivo</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>+4 Horas</h3>
+                    <p>É a média diária que o brasileiro passa nas redes sociais.</p>
+                </div>
+                <div class="card">
+                    <h3>Foco</h3>
+                    <p>O cérebro leva cerca de 23 minutos para recuperar o foco após uma distração.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiz-section">
+            <h2>Faça o Teste: Qual o seu nível de dependência?</h2>
+            <p>Você checa o celular logo ao acordar?</p>
+            <button onclick="responder('sim')">Sim</button>
+            <button onclick="responder('nao')">Não</button>
+            <p id="resultado-quiz"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Projeto de Conscientização Open Source - Hospedado no GitHub</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(135deg, #4a148c, #7b1fa2);
+    color: white;
+    padding: 60px 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 40%;
+}
+
+button {
+    background-color: #7b1fa2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #4a148c;
+}
+
+function responder(resposta) {
+    const resultado = document.getElementById('resultado-quiz');
+    
+    if (resposta === 'sim') {
+        resultado.innerHTML = "<strong>Alerta:</strong> Começar o dia olhando notificações pode aumentar os níveis de ansiedade e dopamina logo cedo. Tente passar os primeiros 30 minutos acordado longe das telas!";
+        resultado.style.color = "#d32f2f";
+    } else {
+        resultado.innerHTML = "<strong>Muito bem!</strong> Manter o celular longe nas primeiras horas da manhã ajuda a focar nas suas tarefas reais e melhora a saúde mental.";
+        resultado.style.color = "#388e3c";
+    }
+}
