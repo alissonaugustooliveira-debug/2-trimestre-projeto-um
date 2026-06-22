@@ -3,45 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecte-se com a Vida | Conscientização</title>
+    <title>Post de Conscientização - Combate à Violência Contra a Mulher</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Desconecte para Conectar</h1> 
-        <p>Você controla o celular ou ele controla você?</p>
-    </header>
-
-    <main class="container">
-        <section class="stats-section">
-            <h2>O Impacto do Uso Excessivo</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>+4 Horas</h3>
-                    <p>É a média diária que o brasileiro passa nas redes sociais.</p>
-                </div>
-                <div class="card">
-                    <h3>Foco</h3>
-                    <p>O cérebro leva cerca de 23 minutos para recuperar o foco após uma distração.</p>
-                </div>
+    <div class="post-container">
+        <div class="post-header">
+            <div class="author-info">
+                <strong>@TodosPelasMulheres</strong>
+                <span>Campanha de Conscientização</span>
             </div>
-        </section>
+        </div>
 
-        <section class="quiz-section">
-            <h2>Faça o Teste: Qual o seu nível de dependência?</h2>
-            <p>Você checa o celular logo ao acordar?</p>
-            <button onclick="responder('sim')">Sim</button>
-            <button onclick="responder('nao')">Não</button>
-            <p id="resultado-quiz"></p>
-        </section>
-    </main>
+        <div class="post-content">
+            <h2>🚨 Violência Contra a Mulher: Identifique e Denuncie</h2>
+            <p>A violência de homens contra mulheres não se restringe apenas à agressão física. Ela assume várias formas que precisam ser identificadas para que possamos quebrar o ciclo.</p>
+            
+            <hr>
 
-    <footer>
-        <p>Projeto de Conscientização Open Source - Hospedado no GitHub</p>
-    </footer>
+            <h3>📌 Tipos de Violência (Lei Maria da Penha)</h3>
+            <ul>
+                <li><strong>Física:</strong> Qualquer conduta que ofenda a integridade ou saúde corporal da mulher.</li>
+                <li><strong>Psicológica:</strong> Humilhação, isolamento, perseguição, ameaças ou controle de comportamento.</li>
+                <li><strong>Sexual:</strong> Presenciar, manter ou participar de relação sexual não desejada mediante coerção ou força.</li>
+                <li><strong>Patrimonial:</strong> Retenção, subtração ou destruição de objetos, documentos, bens ou valores pertencentes à mulher.</li>
+                <li><strong>Moral:</strong> Calúnia, difamação ou injúria.</li>
+            </ul>
 
-    <script src="script.js"></script>
+            <hr>
+
+            <div class="call-to-action">
+                <h3>📞 Como buscar ajuda ou denunciar?</h3>
+                <p>Se você ou alguém que você conhece está passando por isso, não se cale. A denúncia salva vidas.</p>
+                <ul>
+                    <li><strong>Ligue 180:</strong> Central de Atendimento à Mulher (Anônimo e gratuito, 24h).</li>
+                    <li><strong>Ligue 190:</strong> Polícia Militar (Em caso de emergência e agressão imediata).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="post-actions">
+            <button class="btn btn-like" onclick="toggleLike()">
+                👍 Curtir (<span id="like-count">142</span>)
+            </button>
+            <button class="btn btn-dislike" onclick="toggleDislike()">
+                👎 Descurtir (<span id="dislike-count">3</span>)
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Lógica simples de contagem de interações
+        let liked = false;
+        let disliked = false;
+
+        let likeCount = 142;
+        let dislikeCount = 3;
+
+        function toggleLike() {
+            if (!liked) {
+                likeCount++;
+                liked = true;
+                if (disliked) {
+                    dislikeCount--;
+                    disliked = false;
+                }
+            } else {
+                likeCount--;
+                liked = false;
+            }
+            updateCounters();
+        }
+
+        function toggleDislike() {
+            if (!disliked) {
+                dislikeCount++;
+                disliked = true;
+                if (liked) {
+                    likeCount--;
+                    liked = false;
+                }
+            } else {
+                dislikeCount--;
+                disliked = false;
+            }
+            updateCounters();
+        }
+
+        function updateCounters() {
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+    </script>
 </body>
 </html>
 
+/* Configurações Gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container do Post */
+.post-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 550px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Cabeçalho */
+.post-header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px;
+}
+
+.author-info strong {
+    display: block;
+    color: #333333;
+    font-size: 1.1em;
+}
+
+.author-info span {
+    color: #777777;
+    font-size: 0.85em;
+}
+
+/* Conteúdo */
+.post-content h2 {
+    color: #8b0000; /* Vermelho escuro para alerta */
+    font-size: 1.4em;
+    margin-top: 0;
+}
+
+.post-content h3 {
+    color: #444444;
+    font-size: 1.1em;
+}
+
+.post-content p, .post-content li {
+    color: #555555;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.post-content ul {
+    padding-left: 20px;
+}
+
+.post-content li {
+    margin-bottom: 8px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    margin: 15px 0;
+}
+
+.call-to-action {
+    background-color: #fff5f5;
+    border-left: 4px solid #cc0000;
+    padding: 10px 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+.call-to-action h3 {
+    margin-top: 0;
+    color: #cc0000;
+}
+
+/* Botões de Ação */
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #eeeeee;
+    padding-top: 15px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-like {
+    background-color: #e7f3ff;
+    color: #1877f2;
+}
+
+.btn-like:hover {
+    background-color: #dbeafe;
+}
+
+.btn-dislike {
+    background-color: #f2f2f2;
+    color: #555555;
+}
+
+.btn-dislike:hover {
+    background-color: #e4e4e4;
+}
