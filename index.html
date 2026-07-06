@@ -1,100 +1,255 @@
+├── index.html          # Página inicial (Dashboard/Hub)
+├── dojo.html           # Sistema de treino / Cronômetro
+├── tecnicas.html       # Biblioteca de golpes com filtros
+├── css/
+│   └── styles.css      # Design moderno e responsivo (Dark Mode)
+└── js/
+    ├── main.js         # Lógica global e navegação
+    └── dojo.js         # Lógica do gerenciador de treinos (Timer/Tabata)
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Martial Arts | Hub Avançado</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">APEX <span>MARTIAL ARTS</span></div>
+        <nav>
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="tecnicas.html">Biblioteca de Técnicas</a>
+            <a href="dojo.html">Dojo Virtual (Timer)</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Domine a Arte, Controle a Mente</h1>
+            <p>Uma plataforma definitiva para o estudo analítico e gerenciamento de treinos de combate.</p>
+        </section>
+
+        <section class="grid-stats">
+            <div class="card">
+                <i class="fas fa-user-ninja"></i>
+                <h3>Estilos Mapeados</h3>
+                <p id="estilos-count">Carregando...</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-stopwatch"></i>
+                <h3>Seções de Treino</h3>
+                <p>Timer Inteligente Integrado</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-book-dead"></i>
+                <h3>Técnicas Catalogadas</h3>
+                <p>Filtros Avançados por Nível</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Apex Martial Arts Center. Desenvolvido para GitHub Pages.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+:root {
+    --bg-color: #0b0c10;
+    --card-bg: #1f2833;
+    --primary-color: #45f3ff;
+    --text-color: #c5c6c7;
+    --accent-color: #ff0055;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #151922;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+header .logo span {
+    color: var(--primary-color);
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-color);
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80') center/cover;
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.grid-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px 50px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #2f3b4c;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.card i {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #151922;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post de Conscientização - Combate à Violência Contra a Mulher</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dojo Virtual | Timer Avançado</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .timer-container { text-align: center; padding: 50px; max-width: 600px; margin: 0 auto; }
+        .timer-display { font-size: 80px; color: var(--primary-color); margin: 20px 0; font-weight: bold; }
+        .btn-timer { padding: 15px 30px; background: var(--accent-color); border: none; color: white; font-size: 18px; border-radius: 5px; cursor: pointer; cursor: pointer; transition: 0.3s; }
+        .btn-timer:hover { opacity: 0.8; }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="logo">APEX <span>MARTIAL ARTS</span></div>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="tecnicas.html">Biblioteca de Técnicas</a>
+            <a href="dojo.html" class="active">Dojo Virtual (Timer)</a>
+        </nav>
+    </header>
 
-    <div class="post-container">
-        <div class="post-header">
-            <div class="author-info">
-                <strong>@TodosPelasMulheres</strong>
-                <span>Campanha de Conscientização</span>
-            </div>
-        </div>
+    <main class="timer-container">
+        <h2>Gerenciador de Sparring / Combate</h2>
+        <div class="timer-display" id="display">03:00</div>
+        <div id="status-round" style="font-size: 20px; margin-bottom: 20px;">Round 1 / 3</div>
+        <button class="btn-timer" id="startBtn">INICIAR COMBATE</button>
+    </main>
 
-        <div class="post-content">
-            <h2>🚨 Violência Contra a Mulher: Identifique e Denuncie</h2>
-            <p>A violência de homens contra mulheres não se restringe apenas à agressão física. Ela assume várias formas que precisam ser identificadas para que possamos quebrar o ciclo.</p>
-            
-            <hr>
-
-            <h3>📌 Tipos de Violência (Lei Maria da Penha)</h3>
-            <ul>
-                <li><strong>Física:</strong> Qualquer conduta que ofenda a integridade ou saúde corporal da mulher.</li>
-                <li><strong>Psicológica:</strong> Humilhação, isolamento, perseguição, ameaças ou controle de comportamento.</li>
-                <li><strong>Sexual:</strong> Presenciar, manter ou participar de relação sexual não desejada mediante coerção ou força.</li>
-                <li><strong>Patrimonial:</strong> Retenção, subtração ou destruição de objetos, documentos, bens ou valores pertencentes à mulher.</li>
-                <li><strong>Moral:</strong> Calúnia, difamação ou injúria.</li>
-            </ul>
-
-            <hr>
-
-            <div class="call-to-action">
-                <h3>📞 Como buscar ajuda ou denunciar?</h3>
-                <p>Se você ou alguém que você conhece está passando por isso, não se cale. A denúncia salva vidas.</p>
-                <ul>
-                    <li><strong>Ligue 180:</strong> Central de Atendimento à Mulher (Anônimo e gratuito, 24h).</li>
-                    <li><strong>Ligue 190:</strong> Polícia Militar (Em caso de emergência e agressão imediata).</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="post-actions">
-            <button class="btn btn-like" onclick="toggleLike()">
-                👍 Curtir (<span id="like-count">142</span>)
-            </button>
-            <button class="btn btn-dislike" onclick="toggleDislike()">
-                👎 Descurtir (<span id="dislike-count">3</span>)
-            </button>
-        </div>
-    </div>
-
-    <script>
-        // Lógica simples de contagem de interações
-        let liked = false;
-        let disliked = false;
-
-        let likeCount = 142;
-        let dislikeCount = 3;
-
-        function toggleLike() {
-            if (!liked) {
-                likeCount++;
-                liked = true;
-                if (disliked) {
-                    dislikeCount--;
-                    disliked = false;
-                }
-            } else {
-                likeCount--;
-                liked = false;
-            }
-            updateCounters();
-        }
-
-        function toggleDislike() {
-            if (!disliked) {
-                dislikeCount++;
-                disliked = true;
-                if (liked) {
-                    likeCount--;
-                    liked = false;
-                }
-            } else {
-                dislikeCount--;
-                disliked = false;
-            }
-            updateCounters();
-        }
-
-        function updateCounters() {
-            document.getElementById('like-count').innerText = likeCount;
-            document.getElementById('dislike-count').innerText = dislikeCount;
-        }
-    </script>
+    <script src="js/dojo.js"></script>
 </body>
 </html>
+// Lógica do Timer Dinâmico de Artes Marciais
+let timeLeft = 180; // 3 minutos em segundos
+let timerId = null;
+let isRunning = false;
+let currentRound = 1;
+const totalRounds = 3;
+
+const display = document.getElementById('display');
+const startBtn = document.getElementById('startBtn');
+const statusRound = document.getElementById('status-round');
+
+function updateDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    display.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function startTimer() {
+    if (isRunning) {
+        clearInterval(timerId);
+        startBtn.textContent = "RETOMAR COMBATE";
+        startBtn.style.background = "#45f3ff";
+        startBtn.style.color = "#000";
+        isRunning = false;
+    } else {
+        isRunning = true;
+        startBtn.textContent = "PAUSAR TREINO";
+        startBtn.style.background = "#ff0055";
+        startBtn.style.color = "#fff";
+        
+        timerId = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateDisplay();
+            } else {
+                // Fim do round
+                if (currentRound < totalRounds) {
+                    currentRound++;
+                    timeLeft = 180; // reseta para 3 min
+                    statusRound.textContent = `Round ${currentRound} / ${totalRounds}`;
+                    alert(`Fim do Round! Prepare-se para o Round ${currentRound}`);
+                } else {
+                    clearInterval(timerId);
+                    alert("Treino Concluído! Excelente trabalho, Guerreiro.");
+                    resetTimer();
+                }
+            }
+        }, 1000);
+    }
+}
+
+function resetTimer() {
+    timeLeft = 180;
+    currentRound = 1;
+    isRunning = false;
+    startBtn.textContent = "INICIAR COMBATE";
+    statusRound.textContent = `Round 1 / 3`;
+    updateDisplay();
+}
+
+startBtn.addEventListener('click', startTimer);
+updateDisplay();
