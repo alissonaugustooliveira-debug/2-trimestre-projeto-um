@@ -1,422 +1,330 @@
-├<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Bike Shop | Mercado Digital</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0d1117;
-            --panel-bg: #161b22;
-            --primary-color: #2ea44f;
-            --primary-hover: #2c974b;
-            --accent-color: #f9826c;
-            --text-color: #c9d1d9;
-            --text-light: #f0f6fc;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
-            background-color: var(--panel-bg);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #30363d;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--text-light);
-        }
-
-        .logo span { color: var(--primary-color); }
-
-        .cart-icon-container {
-            position: relative;
-            cursor: pointer;
-            font-size: 22px;
-            color: var(--text-light);
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background-color: var(--accent-color);
-            color: white;
-            font-size: 12px;
-            padding: 2px 6px;
-            border-radius: 50%;
-            font-weight: bold;
-        }
-
-        .container {
-            display: flex;
-            padding: 30px 5%;
-            gap: 30px;
-            flex-grow: 1;
-        }
-
-        main { flex: 3; }
-
-        .catalog-title {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: var(--text-light);
-            border-bottom: 2px solid #30363d;
-            padding-bottom: 10px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background-color: var(--panel-bg);
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #21262d;
-        }
-
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-brand {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .product-title {
-            font-size: 18px;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .product-link {
-            font-size: 13px;
-            color: #58a6ff;
-            text-decoration: none;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        .product-link:hover { text-decoration: underline; }
-
-        .product-price {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--text-light);
-            margin-top: auto;
-            margin-bottom: 15px;
-        }
-
-        .btn-add {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            width: 100%;
-        }
-
-        .btn-add:hover { background-color: var(--primary-hover); }
-
-        /* Lateral do Carrinho */
-        sidebar {
-            flex: 1;
-            background-color: var(--panel-bg);
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            height: fit-content;
-            position: sticky;
-            top: 90px;
-        }
-
-        .sidebar-title {
-            font-size: 20px;
-            color: var(--text-light);
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .cart-items {
-            max-height: 350px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #30363d;
-            font-size: 14px;
-        }
-
-        .cart-item-details { flex-grow: 1; padding-right: 10px; }
-        .cart-item-title { color: var(--text-light); font-weight: 500; }
-        .cart-item-qty { font-size: 12px; color: #8b949e; }
-
-        .cart-item-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-remove {
-            background: transparent;
-            border: none;
-            color: var(--accent-color);
-            cursor: pointer;
-        }
-
-        .cart-total {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--text-light);
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid #30363d;
-        }
-
-        .btn-checkout {
-            background-color: #21262d;
-            color: var(--text-light);
-            border: 1px solid #30363d;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-            transition: background 0.2s;
-        }
-
-        .btn-checkout:hover { background-color: #30363d; }
-
-        footer {
-            background-color: var(--panel-bg);
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid #30363d;
-            margin-top: auto;
-            font-size: 14px;
-        }
-
-        @media (max-width: 900px) {
-            .container { flex-direction: column; }
-            sidebar { position: static; }
-        }
-    </style>
+    <title>ConectaBem | Juntos Contra o Cyberbullying</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <div class="logo"><i class="fas fa-bicycle"></i> APEX <span>BIKE SHOP</span></div>
-        <div class="cart-icon-container">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count" id="nav-cart-count">0</span>
+    <header class="header">
+        <div class="logo">
+            🛡️ <span>ConectaBem</span>
         </div>
+        <nav class="nav">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">O que é?</a>
+            <a href="#interativo">Central de Ação</a>
+            <a href="#ajuda" class="btn-ajuda">Preciso de Ajuda</a>
+        </nav>
     </header>
 
-    <div class="container">
-        <main>
-            <h2 class="catalog-title">Bicicletas e Quadros Premium</h2>
-            <div class="products-grid" id="bikes-grid">
-                </div>
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>A internet deve ser um lugar seguro para todos.</h1>
+            <p>O cyberbullying deixa marcas reais. Escolha a empatia, espalhe respeito e saiba como agir.</p>
+            <a href="#interativo" class="btn-primary">Explore as Opções</a>
+        </div>
+    </section>
 
-            <h2 class="catalog-title" style="margin-top: 40px;">Sistemas de Freio Recomendados</h2>
-            <div class="products-grid" id="brakes-grid">
-                </div>
-        </main>
+    <section id="interativo" class="interactive-section">
+        <h2>Como você quer combater o cyberbullying hoje?</h2>
+        <p class="subtitle">Clique em uma das opções abaixo para acessar orientações e recursos:</p>
 
-        <sidebar>
-            <h3 class="sidebar-title">Seu Carrinho <i class="fas fa-shopping-bag"></i></h3>
-            <div class="cart-items" id="cart-items-container">
-                <p style="text-align: center; color: #8b949e; padding: 20px 0;">O carrinho está vazio.</p>
+        <div class="card-grid">
+            <div class="card" onclick="mostrarInfo('vitima')">
+                <div class="card-icon">🚨</div>
+                <h3>Estou sofrendo cyberbullying</h3>
+                <p>Saiba quais passos dar agora para se proteger e guardar provas.</p>
             </div>
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cart-total-value">R$ 0,00</span>
-            </div>
-            <button class="btn-checkout" onclick="checkout()">Finalizar Pedido</button>
-        </sidebar>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 Apex Bike Shop - Mercado Digital de Alta Performance. Hospedado no GitHub Pages.</p>
+            <div class="card" onclick="mostrarInfo('testemunha')">
+                <div class="card-icon">👁️</div>
+                <h3>Presenciei uma agressão</h3>
+                <p>Descubra como apoiar a vítima sem se expor ou se calar.</p>
+            </div>
+
+            <div class="card" onclick="mostrarInfo('educacao')">
+                <div class="card-icon">🧠</div>
+                <h3>Quero me conscientizar</h3>
+                <p>Entenda a diferença entre brincadeira, crítica e agressão virtual.</p>
+            </div>
+
+            <div class="card" onclick="mostrarInfo('denuncia')">
+                <div class="card-icon">📢</div>
+                <h3>Como denunciar?</h3>
+                <p>Veja o passo a passo para reportar em redes sociais e autoridades.</p>
+            </div>
+        </div>
+
+        <div id="painel-detalhes" class="details-panel hidden">
+            <button class="btn-close" onclick="fecharPainel()">✕ Fechar</button>
+            <div id="conteudo-detalhes"></div>
+        </div>
+    </section>
+
+    <footer id="ajuda" class="footer">
+        <p><strong>Em caso de emergência ou apoio emocional gratuito:</strong> Ligue 188 (CVV) ou acesse <a href="https://new.safernet.org.br/" target="_blank">SaferNet Brasil</a>.</p>
+        <p class="copy">&copy; 2026 ConectaBem - Projeto de Conscientização Digital.</p>
     </footer>
 
-    <script>
-        // Banco de Dados dos Produtos do Mercado
-        const produtos = [
-            { id: 1, categoria: "bike", marca: "Gios BR", titulo: "Quadro Gios FRX EVO", preco: 980.00, link: "https://www.giosbr.com.br", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=500" },
-            { id: 2, categoria: "bike", marca: "Hupi", titulo: "Quadro Hupi Naja V4 Dirt", preco: 1250.00, link: "https://www.hupishop.com.br", img: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=500" },
-            { id: 3, categoria: "bike", marca: "Santa Cruz", titulo: "Santa Cruz Nomad Carbon CC", preco: 45900.00, link: "https://www.santacruzbicycles.com", img: "https://images.unsplash.com/photo-1576435465679-644737ebdf22?q=80&w=500" },
-            { id: 4, categoria: "freio", marca: "Magura", titulo: "Kit Freio Hidráulico Magura MT7 Pro", preco: 3200.00, link: "https://www.magura.com", img: "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?q=80&w=500" },
-            { id: 5, categoria: "freio", marca: "Shimano", titulo: "Freio a Disco Shimano Deore XT M8120", preco: 1890.00, link: "https://bike.shimano.com", img: "https://images.unsplash.com/photo-1605335198443-4e4b78c87fca?q=80&w=500" },
-            { id: 6, categoria: "freio", marca: "Magura", titulo: "Par de Freios Magura MT8 Carbon", preco: 4100.00, link: "https://www.magura.com", img: "https://images.unsplash.com/photo-1511994298241-608e28f14f66?q=80&w=500" }
-        ];
-
-        // Estado do Carrinho de Compras
-        let carrinho = [];
-
-        // Inicializar e Renderizar as vitrines
-        function renderCatalogo() {
-            const bikesGrid = document.getElementById("bikes-grid");
-            const brakesGrid = document.getElementById("brakes-grid");
-            
-            bikesGrid.innerHTML = "";
-            brakesGrid.innerHTML = "";
-
-            produtos.forEach(prod => {
-                const card = document.createElement("div");
-                card.className = "product-card";
-                card.innerHTML = `
-                    <img src="${prod.img}" alt="${prod.titulo}" class="product-img">
-                    <div class="product-info">
-                        <span class="product-brand">${prod.marca}</span>
-                        <h3 class="product-title">${prod.titulo}</h3>
-                        <a href="${prod.link}" target="_blank" class="product-link">Visitar site do fabricante <i class="fas fa-external-link-alt"></i></a>
-                        <div class="product-price">R$ ${prod.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
-                        <button class="btn-add" onclick="adicionarAoCarrinho(${prod.id})">Adicionar ao Carrinho</button>
-                    </div>
-                `;
-
-                if(prod.categoria === "bike") {
-                    bikesGrid.appendChild(card);
-                } else {
-                    brakesGrid.appendChild(card);
-                }
-            });
-        }
-
-        // Adicionar item (permite quantos produtos quiser, incrementando quantidade)
-        function adicionarAoCarrinho(id) {
-            const produto = produtos.find(p => p.id === id);
-            const itemNoCarrinho = carrinho.find(item => item.id === id);
-
-            if (itemNoCarrinho) {
-                itemNoCarrinho.quantidade++;
-            } else {
-                carrinho.push({ ...produto, quantidade: 1 });
-            }
-
-            atualizarInterfaceCarrinho();
-        }
-
-        // Remover item do carrinho
-        function removerDoCarrinho(id) {
-            carrinho = carrinho.filter(item => item.id !== id);
-            atualizarInterfaceCarrinho();
-        }
-
-        // Atualizar contadores e valores
-        function atualizarInterfaceCarrinho() {
-            const cartContainer = document.getElementById("cart-items-container");
-            const totalValueEl = document.getElementById("cart-total-value");
-            const navCartCount = document.getElementById("nav-cart-count");
-
-            if (carrinho.length === 0) {
-                cartContainer.innerHTML = `<p style="text-align: center; color: #8b949e; padding: 20px 0;">O carrinho está vazio.</p>`;
-                totalValueEl.textContent = "R$ 0,00";
-                navCartCount.textContent = "0";
-                return;
-            }
-
-            cartContainer.innerHTML = "";
-            let valorTotal = 0;
-            let totalItens = 0;
-
-            carrinho.forEach(item => {
-                valorTotal += (item.preco * item.quantidade);
-                totalItens += item.quantidade;
-
-                const itemRow = document.createElement("div");
-                itemRow.className = "cart-item";
-                itemRow.innerHTML = `
-                    <div class="cart-item-details">
-                        <div class="cart-item-title">${item.titulo}</div>
-                        <div class="cart-item-qty">${item.quantidade}x - R$ ${(item.preco * item.quantidade).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="btn-remove" onclick="removerDoCarrinho(${item.id})"><i class="fas fa-trash"></i></button>
-                    </div>
-                `;
-                cartContainer.appendChild(itemRow);
-            });
-
-            totalValueEl.textContent = `R$ ${valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-            navCartCount.textContent = totalItens;
-        }
-
-        // Finalizar Pedido
-        function checkout() {
-            if(carrinho.length === 0) {
-                alert("Seu carrinho está vazio!");
-                return;
-            }
-            alert("Pedido simulado com sucesso! Sistema integrado pronto para checkout.");
-            carrinho = [];
-            atualizarInterfaceCarrinho();
-        }
-
-        // Iniciar página
-        renderCatalogo();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
+/* Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* Header Navbar */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #4a90e2;
+}
+
+.nav a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #4a90e2;
+}
+
+.nav .btn-ajuda {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.nav .btn-ajuda:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
+/* Banner Hero */
+.hero {
+    background: linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%);
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background-color: #ffffff;
+    color: #4a90e2;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    font-weight: 800;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+/* Seção Interativa */
+.interactive-section {
+    padding: 4rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.interactive-section h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+/* Grid de Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #4a90e2;
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.15);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Painel Dinâmico de Resposta */
+.details-panel {
+    margin-top: 2.5rem;
+    background: #ffffff;
+    border-left: 6px solid #4a90e2;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #888;
+}
+
+.btn-close:hover {
+    color: #e74c3c;
+}
+
+/* Rodapé */
+.footer {
+    background-color: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 4rem;
+}
+
+.footer a {
+    color: #50e3c2;
+}
+
+.copy {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+// Base de dados com as informações para cada clique
+const conteudos = {
+    vitima: `
+        <h3>🛡️ Se você está sofrendo Cyberbullying:</h3>
+        <br>
+        <ul>
+            <li><strong>Não responda à provocação:</strong> Agressores buscam reação.</li>
+            <li><strong>Guarde as evidências:</strong> Tire prints das conversas, fotos, links e horários.</li>
+            <li><strong>Bloqueie o agressor:</strong> Utilize as ferramentas de bloqueio nas redes sociais.</li>
+            <li><strong>Busque ajuda:</strong> Conte para um adulto de confiança, professor ou guardião.</li>
+        </ul>
+    `,
+    testemunha: `
+        <h3>👁️ Se você viu alguém sofrendo cyberbullying:</h3>
+        <br>
+        <ul>
+            <li><strong>Não ria e não compartilhe:</strong> Repassar o conteúdo torna você cúmplice.</li>
+            <li><strong>Apoie a vítima no privado:</strong> Mande uma mensagem mostrando que ela não está sozinha.</li>
+            <li><strong>Denuncie o conteúdo:</strong> Use o botão de denúncia da própria plataforma.</li>
+        </ul>
+    `,
+    educacao: `
+        <h3>🧠 Entendendo o Cyberbullying:</h3>
+        <br>
+        <p>Cyberbullying é o uso de espaço digital para intimidar, hostilizar, humilhar ou amedrontar alguém de forma repetitiva.</p>
+        <br>
+        <p><strong>Exemplos comuns:</strong> Espalhar mentiras, expor fotos sem autorização, criar perfis fakes para difamar ou enviar mensagens de ódio.</p>
+    `,
+    denuncia: `
+        <h3>📢 Como Fazer uma Denúncia:</h3>
+        <br>
+        <ul>
+            <li><strong>Na rede social:</strong> Clique nos três pontinhos (...) ao lado do post/perfil e selecione "Denunciar".</li>
+            <li><strong>Na SaferNet:</strong> Acesse <a href="https://canaldedenuncia.org.br/" target="_blank">canaldedenuncia.org.br</a> para reportar crimes virtuais anonimamente.</li>
+            <li><strong>Na Polícia:</strong> Procure a Delegacia de Crimes Cibernéticos da sua região com os prints impressos.</li>
+        </ul>
+    `
+};
+
+// Função para exibir as informações na tela
+function mostrarInfo(opcao) {
+    const painel = document.getElementById('painel-detalhes');
+    const conteudo = document.getElementById('conteudo-detalhes');
+
+    conteudo.innerHTML = conteudos[opcao];
+    painel.classList.remove('hidden');
+
+    // Rola a tela suavemente até a resposta
+    painel.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Função para fechar o painel
+function fecharPainel() {
+    const painel = document.getElementById('painel-detalhes');
+    painel.classList.add('hidden');
+}
