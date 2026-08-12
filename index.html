@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeZone • Anti-Bullying Protocol</title>
+  <title>SafeZone • Manifesto Anti-Bullying</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Special+Elite&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset & Variáveis Global */
+    /* Reset & Regra Estrita de Borda Quadrada */
     * {
       margin: 0;
       padding: 0;
@@ -20,25 +20,26 @@
 
     :root {
       --bg-dark: #08090c;
-      --card-bg: rgba(15, 18, 26, 0.85);
+      --card-bg: rgba(15, 18, 26, 0.9);
       --card-border: #1e2638;
       --accent-neon-cyan: #00f0ff;
       --accent-neon-pink: #ff0055;
       --accent-neon-purple: #7000ff;
       --text-main: #f0f4f8;
-      --text-muted: #8a99ad;
+      --text-muted: #a0aec0;
     }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Special Elite', cursive, monospace; /* Fonte estilo máquina de escrever/carta */
       background-color: var(--bg-dark);
       color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
       padding-bottom: 80px;
+      letter-spacing: 0.5px;
     }
 
-    /* Linhas de Fundo e Glow Cyberpunk */
+    /* Linhas de Fundo Cyber-Gothic */
     .grid-lines {
       position: fixed;
       top: 0;
@@ -67,15 +68,12 @@
     }
 
     .logo {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
+      font-family: 'Cinzel', serif; /* Fonte estilo clássico/antigo */
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 3px;
       color: var(--text-main);
       text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .logo span {
@@ -86,12 +84,12 @@
       background: rgba(0, 240, 255, 0.1);
       color: var(--accent-neon-cyan);
       border: 1px solid var(--accent-neon-cyan);
-      padding: 6px 16px;
-      font-family: 'Rajdhani', sans-serif;
+      padding: 8px 18px;
+      font-family: 'Cinzel', serif;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
     }
 
     /* Layout Main */
@@ -110,13 +108,13 @@
     }
 
     .hero h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 3.8rem;
-      font-weight: 700;
-      line-height: 1;
+      font-family: 'Cinzel', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
       text-transform: uppercase;
       margin-bottom: 15px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       background: linear-gradient(90deg, #ffffff, var(--text-muted));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -124,17 +122,18 @@
 
     .hero p {
       color: var(--text-muted);
-      font-size: 1.15rem;
-      max-width: 700px;
+      font-size: 1.1rem;
+      max-width: 750px;
+      line-height: 1.6;
     }
 
     /* Section Headers */
     .section-title {
-      font-family: 'Rajdhani', sans-serif;
+      font-family: 'Cinzel', serif;
       font-size: 2rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       margin-bottom: 25px;
       display: flex;
       align-items: center;
@@ -180,12 +179,13 @@
     }
 
     .card h3 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
       font-weight: 700;
       margin-bottom: 12px;
       text-transform: uppercase;
       color: var(--text-main);
+      letter-spacing: 1px;
     }
 
     .card p {
@@ -194,7 +194,7 @@
       font-size: 0.95rem;
     }
 
-    /* Images */
+    /* Imagens */
     .img-box {
       width: 100%;
       height: 220px;
@@ -207,7 +207,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(30%) contrast(110%);
+      filter: grayscale(40%) contrast(120%);
       transition: transform 0.4s ease;
     }
 
@@ -216,11 +216,11 @@
       filter: grayscale(0%);
     }
 
-    /* Estatísticas / Números */
+    /* Números de Destaque */
     .stat-number {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 700;
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      font-weight: 900;
       color: var(--accent-neon-pink);
       line-height: 1;
       margin-bottom: 10px;
@@ -239,7 +239,7 @@
       border: 1px solid var(--card-border);
       color: var(--text-main);
       padding: 16px;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Special Elite', cursive, monospace;
       font-size: 0.95rem;
       cursor: pointer;
       text-align: left;
@@ -253,15 +253,15 @@
     }
 
     #quiz-result {
-      margin-top: 15px;
-      font-family: 'Rajdhani', sans-serif;
+      margin-top: 20px;
+      font-family: 'Cinzel', serif;
       font-size: 1.1rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    /* Mural Feed */
+    /* Mural / Feed estilo Carta Escrita */
     .feed-input-box {
       display: flex;
       gap: 0;
@@ -275,7 +275,8 @@
       border-right: none;
       padding: 16px;
       color: var(--text-main);
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Special Elite', cursive, monospace;
+      font-size: 0.95rem;
       outline: none;
     }
 
@@ -288,10 +289,11 @@
       color: #000;
       border: 1px solid var(--accent-neon-cyan);
       padding: 16px 30px;
-      font-family: 'Rajdhani', sans-serif;
+      font-family: 'Cinzel', serif;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1rem;
       text-transform: uppercase;
+      letter-spacing: 1px;
       cursor: pointer;
       transition: background 0.2s ease;
     }
@@ -314,18 +316,19 @@
     }
 
     .feed-item .user {
-      font-family: 'Rajdhani', sans-serif;
+      font-family: 'Cinzel', serif;
       color: var(--accent-neon-cyan);
       font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* Responsivo */
+    /* Responsividade */
     @media (max-width: 768px) {
       .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 2.3rem; }
       .feed-input-box { flex-direction: column; }
       input[type="text"] { border-right: 1px solid var(--card-border); }
     }
@@ -337,86 +340,86 @@
 
   <nav>
     <div class="logo">Safe<span>Zone</span></div>
-    <div class="status-tag">Protocolo Ativo</div>
+    <div class="status-tag">Documento Ativo</div>
   </nav>
 
   <div class="container">
 
     <header class="hero">
       <h1>Conscientizar. Apoiar. Agir.</h1>
-      <p>Um portal interativo contra a intimidação sistemática e o cyberbullying. Respeito não é opção, é o padrão.</p>
+      <p>Um manifesto interativo contra a intimidação sistemática e o cyberbullying. Registrado para promover a empatia e o respeito.</p>
     </header>
 
-    <h2 class="section-title">01 // Entendendo o Problema</h2>
+    <h2 class="section-title">I // Sobre a Intimidação</h2>
     <div class="grid-2">
       <div class="card">
         <div class="img-box">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Grupo de Jovens Unidose">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="União e Amizade">
         </div>
-        <h3>O que caracteriza o Bullying?</h3>
-        <p>Ações repetitivas de violência física, verbal ou psicológica feitas por uma ou mais pessoas com intenção de ferir. Não se trata de uma brincadeira isolada, mas de um comportamento contínuo e nocivo.</p>
+        <h3>O Conceito do Bullying</h3>
+        <p>Ações repetitivas de violência física, verbal ou psicológica aplicadas com intenção de ferir. Não se confunde com divergências casuais; é uma agressão contínua que precisa ser contida.</p>
       </div>
 
       <div class="card">
         <div class="img-box">
-          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Conexão digital">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Conexão Digital">
         </div>
-        <h3>Cyberbullying: O Perigo Digital</h3>
-        <p>A violência que se espalha através das telas. Ocorre em redes sociais, jogos online e aplicativos de mensagens, através de piadas maldosas, vazamento de fotos, exclusão e ofensas anônimas.</p>
+        <h3>A Ameaça do Cyberbullying</h3>
+        <p>A hostilidade propagada nos meios digitais. Ocorre através de redes, fóruns e mensagens por meio de difamação, exposição não consentida e agressões veladas pelo anonimato.</p>
       </div>
     </div>
 
-    <h2 class="section-title">02 // Formas de Intimidação</h2>
+    <h2 class="section-title">II // Categorias de Agressão</h2>
     <div class="grid-3">
       <div class="card">
-        <div class="stat-number">01.</div>
+        <div class="stat-number">I.</div>
         <h3>Verbal</h3>
-        <p>Apelidos pejorativos, insultos, xingamentos, ameaças ou humilhações públicas.</p>
+        <p>Uso de insultos, apelidos pejorativos, difamações e humilhações direcionadas público a público.</p>
       </div>
       <div class="card">
-        <div class="stat-number">02.</div>
+        <div class="stat-number">II.</div>
         <h3>Social</h3>
-        <p>Ignorar de propósito, espalhar boatos, isolar uma pessoa do grupo ou cancelar.</p>
+        <p>Exclusão deliberada de grupos, propagação de boatos e boicote às relações da vítima.</p>
       </div>
       <div class="card">
-        <div class="stat-number">03.</div>
+        <div class="stat-number">III.</div>
         <h3>Psicológica</h3>
-        <p>Chantagens, manipulação, perseguição e exclusão sistemática.</p>
+        <p>Intimidação sistemática, manipulação, chantagem emocional e perseguição indireta.</p>
       </div>
     </div>
 
-    <h2 class="section-title">03 // Simulação de Tomada de Decisão</h2>
+    <h2 class="section-title">III // Teste de Conduta</h2>
     <div class="card" style="margin-bottom: 60px;">
-      <h3>Situação Real:</h3>
-      <p style="font-size: 1.05rem; color: #fff; margin-bottom: 15px;">Um colega está sendo atacado constantemente nos comentários de um post em uma rede social. Qual a conduta correta?</p>
+      <h3>Caso Prático:</h3>
+      <p style="font-size: 1rem; color: #fff; margin-bottom: 15px;">Um colega é alvo de chacotas recorrentes no grupo virtual da turma. Como você deve agir?</p>
       
       <div class="quiz-container">
-        <button class="btn-quiz" onclick="checkQuiz(false)">A) Curtir ou comentar no post para engajar a piada.</button>
-        <button class="btn-quiz" onclick="checkQuiz(false)">B) Não fazer nada porque o problema não é com você.</button>
-        <button class="btn-quiz" onclick="checkQuiz(true)">C) Denunciar os comentários na plataforma, oferecer apoio no privado e avisar um responsável.</button>
+        <button class="btn-quiz" onclick="checkQuiz(false)">A) Espalhar as mensagens para que outros vejam.</button>
+        <button class="btn-quiz" onclick="checkQuiz(false)">B) Permanecer em silêncio por não ser uma questão sua.</button>
+        <button class="btn-quiz" onclick="checkQuiz(true)">C) Registrar as evidências, oferecer suporte individual ao atingido e reportar a autoridade competente.</button>
       </div>
 
       <div id="quiz-result"></div>
     </div>
 
-    <h2 class="section-title">04 // Mural da Comunidade</h2>
+    <h2 class="section-title">IV // Registro de Cartas e Apoio</h2>
     <div class="card">
-      <h3>Envie uma Mensagem de Impacto</h3>
-      <p style="margin-bottom: 20px;">Deixe uma palavra de apoio para fortalecer outros jovens no combate ao bullying.</p>
+      <h3>Envie uma Mensagem de Suporte</h3>
+      <p style="margin-bottom: 20px;">Deixe registrado seu depoimento ou palavra de encorajamento para fortalecimento coletivo.</p>
 
       <div class="feed-input-box">
-        <input type="text" id="user-input" placeholder="Digite sua mensagem de apoio aqui..." maxlength="120">
+        <input type="text" id="user-input" placeholder="Escreva sua mensagem aqui..." maxlength="120">
         <button class="btn-submit" onclick="addFeedMessage()">Publicar</button>
       </div>
 
       <div class="feed-grid" id="feed-container">
         <div class="feed-item">
-          <div class="user">// REGISTRO_01</div>
-          A diversidade de pensamentos e estilos é o que torna tudo mais interessante. Respeite sempre!
+          <div class="user">// CARTA_REGISTRO_01</div>
+          A individualidade e as diferenças enriquecem o grupo. Acolher é uma demonstração de força.
         </div>
         <div class="feed-item">
-          <div class="user">// REGISTRO_02</div>
-          Seja a pessoa que acolhe, não a que afasta. O impacto positivo também se espalha!
+          <div class="user">// CARTA_REGISTRO_02</div>
+          Não hesite em estender a mão para quem precisa de amparo. A empatia transforma ambientes.
         </div>
       </div>
     </div>
@@ -429,14 +432,14 @@
       const result = document.getElementById('quiz-result');
       if (correct) {
         result.style.color = 'var(--accent-neon-cyan)';
-        result.innerText = '[✓] RESPOSTA CORRETA. Denunciar e acolher interrompe a propagação da intimidação.';
+        result.innerText = '[✓] CONDUTA CORRETA. O registro e o acolhimento cortam a cadeia de violência.';
       } else {
         result.style.color = 'var(--accent-neon-pink)';
-        result.innerText = '[X] ATITUDE INCORRETA. Essa ação perpetua ou ignora a dor do outro. Tente a opção C.';
+        result.innerText = '[X] CONDUTA INCORRETA. A omissão ou a propagação amplificam os danos. Escolha a opção C.';
       }
     }
 
-    // Lógica de Postagem no Feed
+    // Lógica do Mural de Publicação
     function addFeedMessage() {
       const input = document.getElementById('user-input');
       const val = input.value.trim();
@@ -446,11 +449,10 @@
         const newItem = document.createElement('div');
         newItem.className = 'feed-item';
         
-        // Gera um id aleatório para dar estilo
         const randomId = Math.floor(Math.random() * 89 + 10);
         
         newItem.innerHTML = `
-          <div class="user">// REGISTRO_${randomId}</div>
+          <div class="user">// CARTA_REGISTRO_${randomId}</div>
           ${val}
         `;
 
