@@ -3,395 +3,458 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeZone • Stop Bullying</title>
+  <title>SafeZone • Anti-Bullying Protocol</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset & Variáveis */
+    /* Reset & Variáveis Global */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      border-radius: 0 !important; /* TUDO STRICTAMENTE QUADRADO */
     }
 
     :root {
-      --bg: #0d0f17;
-      --card-bg: rgba(22, 27, 38, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent-pink: #ff2a75;
-      --accent-purple: #8a2be2;
-      --accent-cyan: #00f2fe;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
+      --bg-dark: #08090c;
+      --card-bg: rgba(15, 18, 26, 0.85);
+      --card-border: #1e2638;
+      --accent-neon-cyan: #00f0ff;
+      --accent-neon-pink: #ff0055;
+      --accent-neon-purple: #7000ff;
+      --text-main: #f0f4f8;
+      --text-muted: #8a99ad;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: var(--bg-dark);
       color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
-      padding-bottom: 60px;
+      padding-bottom: 80px;
     }
 
-    /* Efeito de Luz de Fundo (Glow) */
-    .glow-bg {
+    /* Linhas de Fundo e Glow Cyberpunk */
+    .grid-lines {
       position: fixed;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255, 42, 117, 0.15) 0%, rgba(138, 43, 226, 0.15) 40%, transparent 70%);
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
       z-index: -1;
       pointer-events: none;
     }
 
-    /* Barra de Navegação */
+    /* Navegação */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 8%;
-      backdrop-filter: blur(12px);
-      background: rgba(13, 15, 23, 0.8);
-      border-bottom: 1px solid var(--card-border);
+      background: rgba(8, 9, 12, 0.95);
+      border-bottom: 2px solid var(--accent-neon-cyan);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .logo {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .badge-live {
-      background: rgba(0, 242, 254, 0.1);
-      color: var(--accent-cyan);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-main);
+      text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .badge-live::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background-color: var(--accent-cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-cyan);
+    .logo span {
+      color: var(--accent-neon-cyan);
     }
 
-    /* Container Principal */
+    .status-tag {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--accent-neon-cyan);
+      border: 1px solid var(--accent-neon-cyan);
+      padding: 6px 16px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Layout Main */
     .container {
-      max-width: 1000px;
-      margin: 40px auto 0;
+      max-width: 1100px;
+      margin: 50px auto 0;
       padding: 0 20px;
     }
 
     /* Hero Section */
     .hero {
-      text-align: center;
-      margin-bottom: 50px;
+      text-align: left;
+      margin-bottom: 60px;
+      border-left: 4px solid var(--accent-neon-pink);
+      padding-left: 20px;
     }
 
     .hero h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 3.2rem;
-      font-weight: 800;
-      line-height: 1.1;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
       margin-bottom: 15px;
-      background: linear-gradient(180deg, #ffffff 0%, #9ca3af 100%);
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #ffffff, var(--text-muted));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
+      font-size: 1.15rem;
+      max-width: 700px;
     }
 
-    /* Layout Grid */
-    .grid {
+    /* Section Headers */
+    .section-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-main);
+    }
+
+    .section-title::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--accent-neon-cyan);
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
     }
 
-    /* Cards com Glassmorphism */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    /* Estilo dos Cards Retângulos */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 28px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 30px;
+      position: relative;
+      transition: all 0.25s ease;
     }
 
     .card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-4px);
+      border-color: var(--accent-neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+      transform: translateY(-2px);
     }
 
-    .card-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
+    .card h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      text-transform: uppercase;
+      color: var(--text-main);
     }
 
-    .card-text {
+    .card p {
       color: var(--text-muted);
       line-height: 1.6;
       font-size: 0.95rem;
-      margin-bottom: 20px;
     }
 
-    /* Card de Imagem */
-    .img-wrapper {
-      position: relative;
-      border-radius: 16px;
+    /* Images */
+    .img-box {
+      width: 100%;
+      height: 220px;
       overflow: hidden;
-      height: 200px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      border: 1px solid var(--card-border);
     }
 
-    .img-wrapper img {
+    .img-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.9);
-      transition: transform 0.5s ease;
+      filter: grayscale(30%) contrast(110%);
+      transition: transform 0.4s ease;
     }
 
-    .card:hover .img-wrapper img {
-      transform: scale(1.05);
+    .card:hover .img-box img {
+      transform: scale(1.03);
+      filter: grayscale(0%);
+    }
+
+    /* Estatísticas / Números */
+    .stat-number {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent-neon-pink);
+      line-height: 1;
+      margin-bottom: 10px;
     }
 
     /* Quiz Interativo */
-    .quiz-options {
+    .quiz-container {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      margin-top: 20px;
     }
 
-    .btn-option {
-      background: rgba(255, 255, 255, 0.03);
+    .btn-quiz {
+      background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 14px 18px;
-      border-radius: 14px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
+      padding: 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
       cursor: pointer;
       text-align: left;
       transition: all 0.2s ease;
     }
 
-    .btn-option:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--accent-pink);
+    .btn-quiz:hover {
+      background: rgba(0, 240, 255, 0.05);
+      border-color: var(--accent-neon-cyan);
+      color: var(--accent-neon-cyan);
     }
 
-    #quiz-feedback {
+    #quiz-result {
       margin-top: 15px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      min-height: 20px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* Feed / Mural em Tempo Real */
-    .full-width {
-      grid-column: 1 / -1;
-    }
-
-    .input-box {
+    /* Mural Feed */
+    .feed-input-box {
       display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 0;
+      margin-bottom: 30px;
     }
 
     input[type="text"] {
       flex: 1;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.5);
       border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 14px 18px;
+      border-right: none;
+      padding: 16px;
       color: var(--text-main);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       outline: none;
-      transition: border-color 0.2s ease;
     }
 
     input[type="text"]:focus {
-      border-color: var(--accent-pink);
+      border-color: var(--accent-neon-cyan);
     }
 
-    .btn-action {
-      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-      color: white;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 14px;
-      font-family: 'Outfit', sans-serif;
+    .btn-submit {
+      background: var(--accent-neon-cyan);
+      color: #000;
+      border: 1px solid var(--accent-neon-cyan);
+      padding: 16px 30px;
+      font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: opacity 0.2s ease;
+      transition: background 0.2s ease;
     }
 
-    .btn-action:hover {
-      opacity: 0.9;
+    .btn-submit:hover {
+      background: #00c4d1;
     }
 
     .feed-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
     }
 
-    .feed-card {
-      background: rgba(255, 255, 255, 0.03);
+    .feed-item {
+      background: rgba(0, 0, 0, 0.4);
       border: 1px solid var(--card-border);
-      padding: 18px;
-      border-radius: 16px;
+      border-left: 3px solid var(--accent-neon-purple);
+      padding: 20px;
+    }
+
+    .feed-item .user {
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--accent-neon-cyan);
+      font-weight: 700;
       font-size: 0.9rem;
-      line-height: 1.5;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    .feed-card .user-tag {
-      font-size: 0.75rem;
-      color: var(--accent-cyan);
       margin-bottom: 8px;
-      font-weight: 600;
+      text-transform: uppercase;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Responsividade */
+    /* Responsivo */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .input-box { flex-direction: column; }
-      .btn-action { width: 100%; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.5rem; }
+      .feed-input-box { flex-direction: column; }
+      input[type="text"] { border-right: 1px solid var(--card-border); }
     }
   </style>
 </head>
 <body>
 
-  <div class="glow-bg"></div>
+  <div class="grid-lines"></div>
 
   <nav>
-    <div class="logo">SafeZone⚡</div>
-    <div class="badge-live">Comunidade Ativa</div>
+    <div class="logo">Safe<span>Zone</span></div>
+    <div class="status-tag">Protocolo Ativo</div>
   </nav>
 
   <div class="container">
 
     <header class="hero">
-      <h1>Respeito Conecta.</h1>
-      <p>Um espaço dinâmico para transformar atitudes, combater o bullying e criar conexões reais.</p>
+      <h1>Conscientizar. Apoiar. Agir.</h1>
+      <p>Um portal interativo contra a intimidação sistemática e o cyberbullying. Respeito não é opção, é o padrão.</p>
     </header>
 
-    <div class="grid">
-
-      <section class="card">
-        <div class="img-wrapper">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Conexão entre amigos">
+    <h2 class="section-title">01 // Entendendo o Problema</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="img-box">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Grupo de Jovens Unidose">
         </div>
-        <h2 class="card-title">O que é Bullying?</h2>
-        <p class="card-text">Não é brincadeira quando machuca o outro. Bullying engloba agressões verbais, físicas ou virtuais (cyberbullying) de forma repetida. Entender a diferença muda o jogo.</p>
-      </section>
+        <h3>O que caracteriza o Bullying?</h3>
+        <p>Ações repetitivas de violência física, verbal ou psicológica feitas por uma ou mais pessoas com intenção de ferir. Não se trata de uma brincadeira isolada, mas de um comportamento contínuo e nocivo.</p>
+      </div>
 
-      <section class="card">
-        <h2 class="card-title">Simulador de Atitude 🎯</h2>
-        <p class="card-text"><strong>Cenário:</strong> Alguém está criando piadas ofensivas sobre um colega em um grupo de mensagens. Qual seu próximo passo?</p>
-        
-        <div class="quiz-options">
-          <button class="btn-option" onclick="evalQuiz(false)">A) Ignorar o chat e não dizer nada.</button>
-          <button class="btn-option" onclick="evalQuiz(false)">B) Encaminhar a piada para outros amigos.</button>
-          <button class="btn-option" onclick="evalQuiz(true)">C) Mandar mensagem no privado apoiando o colega e avisar um responsável.</button>
+      <div class="card">
+        <div class="img-box">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Conexão digital">
         </div>
+        <h3>Cyberbullying: O Perigo Digital</h3>
+        <p>A violência que se espalha através das telas. Ocorre em redes sociais, jogos online e aplicativos de mensagens, através de piadas maldosas, vazamento de fotos, exclusão e ofensas anônimas.</p>
+      </div>
+    </div>
 
-        <div id="quiz-feedback"></div>
-      </section>
+    <h2 class="section-title">02 // Formas de Intimidação</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-number">01.</div>
+        <h3>Verbal</h3>
+        <p>Apelidos pejorativos, insultos, xingamentos, ameaças ou humilhações públicas.</p>
+      </div>
+      <div class="card">
+        <div class="stat-number">02.</div>
+        <h3>Social</h3>
+        <p>Ignorar de propósito, espalhar boatos, isolar uma pessoa do grupo ou cancelar.</p>
+      </div>
+      <div class="card">
+        <div class="stat-number">03.</div>
+        <h3>Psicológica</h3>
+        <p>Chantagens, manipulação, perseguição e exclusão sistemática.</p>
+      </div>
+    </div>
 
-      <section class="card full-width">
-        <h2 class="card-title">Feed de Apoio 💬</h2>
-        <p class="card-text">Deixe uma mensagem rápida de incentivo para a comunidade. Seja a voz positiva de hoje.</p>
+    <h2 class="section-title">03 // Simulação de Tomada de Decisão</h2>
+    <div class="card" style="margin-bottom: 60px;">
+      <h3>Situação Real:</h3>
+      <p style="font-size: 1.05rem; color: #fff; margin-bottom: 15px;">Um colega está sendo atacado constantemente nos comentários de um post em uma rede social. Qual a conduta correta?</p>
+      
+      <div class="quiz-container">
+        <button class="btn-quiz" onclick="checkQuiz(false)">A) Curtir ou comentar no post para engajar a piada.</button>
+        <button class="btn-quiz" onclick="checkQuiz(false)">B) Não fazer nada porque o problema não é com você.</button>
+        <button class="btn-quiz" onclick="checkQuiz(true)">C) Denunciar os comentários na plataforma, oferecer apoio no privado e avisar um responsável.</button>
+      </div>
 
-        <div class="input-box">
-          <input type="text" id="post-input" placeholder="Escreva uma mensagem positiva..." maxlength="100">
-          <button class="btn-action" onclick="publishPost()">Publicar</button>
+      <div id="quiz-result"></div>
+    </div>
+
+    <h2 class="section-title">04 // Mural da Comunidade</h2>
+    <div class="card">
+      <h3>Envie uma Mensagem de Impacto</h3>
+      <p style="margin-bottom: 20px;">Deixe uma palavra de apoio para fortalecer outros jovens no combate ao bullying.</p>
+
+      <div class="feed-input-box">
+        <input type="text" id="user-input" placeholder="Digite sua mensagem de apoio aqui..." maxlength="120">
+        <button class="btn-submit" onclick="addFeedMessage()">Publicar</button>
+      </div>
+
+      <div class="feed-grid" id="feed-container">
+        <div class="feed-item">
+          <div class="user">// REGISTRO_01</div>
+          A diversidade de pensamentos e estilos é o que torna tudo mais interessante. Respeite sempre!
         </div>
-
-        <div class="feed-grid" id="feed-container">
-          <div class="feed-card">
-            <div class="user-tag">@comunidade</div>
-            Diferenças são o que nos tornam únicos. Respeito sempre! ✨
-          </div>
-          <div class="feed-card">
-            <div class="user-tag">@anonimo</div>
-            Se você estiver passando por algo difícil, saiba que não está sozinho. 🤝
-          </div>
+        <div class="feed-item">
+          <div class="user">// REGISTRO_02</div>
+          Seja a pessoa que acolhe, não a que afasta. O impacto positivo também se espalha!
         </div>
-      </section>
-
+      </div>
     </div>
 
   </div>
 
   <script>
-    // Lógica do Quiz Interativo
-    function evalQuiz(isCorrect) {
-      const feedback = document.getElementById('quiz-feedback');
-      if (isCorrect) {
-        feedback.style.color = '#00f2fe';
-        feedback.innerText = '⚡ Mandou bem! Acolher no privado e buscar ajuda corta o ciclo da intimidação.';
+    // Lógica do Quiz
+    function checkQuiz(correct) {
+      const result = document.getElementById('quiz-result');
+      if (correct) {
+        result.style.color = 'var(--accent-neon-cyan)';
+        result.innerText = '[✓] RESPOSTA CORRETA. Denunciar e acolher interrompe a propagação da intimidação.';
       } else {
-        feedback.style.color = '#ff2a75';
-        feedback.innerText = '⚠️ Atitude passiva ou de incentivo ajuda o bullying a continuar. Tente a opção C!';
+        result.style.color = 'var(--accent-neon-pink)';
+        result.innerText = '[X] ATITUDE INCORRETA. Essa ação perpetua ou ignora a dor do outro. Tente a opção C.';
       }
     }
 
     // Lógica de Postagem no Feed
-    function publishPost() {
-      const input = document.getElementById('post-input');
-      const text = input.value.trim();
+    function addFeedMessage() {
+      const input = document.getElementById('user-input');
+      const val = input.value.trim();
 
-      if (text !== '') {
-        const feedContainer = document.getElementById('feed-container');
+      if (val !== '') {
+        const feed = document.getElementById('feed-container');
+        const newItem = document.createElement('div');
+        newItem.className = 'feed-item';
         
-        const newCard = document.createElement('div');
-        newCard.className = 'feed-card';
-        newCard.innerHTML = `
-          <div class="user-tag">@agora</div>
-          ${text}
+        // Gera um id aleatório para dar estilo
+        const randomId = Math.floor(Math.random() * 89 + 10);
+        
+        newItem.innerHTML = `
+          <div class="user">// REGISTRO_${randomId}</div>
+          ${val}
         `;
 
-        feedContainer.prepend(newCard);
+        feed.prepend(newItem);
         input.value = '';
       }
     }
